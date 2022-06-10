@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Department>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class DepartmentFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            "name" => $this->faker->name,
-            "department_id" => $this->faker->numberBetween(1,5),
+            //
         ];
     }
 }

@@ -1,12 +1,11 @@
-@extends("master")
-@section('content')
+<x-template-component>
 
 <div class="d-flex justify-content-between">
     <h2>Departments</h2>
     {{-- <a class="btn btn-sm btn-primary m-1" href="/department/create" >Add Department</a> --}}
     <a class="btn btn-sm btn-primary m-1" href="{{route('department.create')}}" >Add Department</a>
 </div>
-{{-- directive --}}
+
 @component('components.alert-component')
     Your message here
     @slot('style')
@@ -16,7 +15,6 @@
 
 <hr>
 
-{{-- x blade --}}
 <x-alert-component>
     Welcome
     <x-slot name="style">
@@ -85,4 +83,4 @@
 
 {{--this displays next/previous  --}}
 {{-- {{$depts->links("pagination::simple-bootstrap-4")}} --}}
-@endsection
+</x-template-component>

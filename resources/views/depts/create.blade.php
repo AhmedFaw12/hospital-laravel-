@@ -9,12 +9,19 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            {{-- displaying all errors --}}
+            {{-- @foreach($errors->all() as $error)
+                {{$error}}
+            @endforeach --}}
             {{-- <form method="POST" action="/department/store"> --}}
             <form method="POST" action="{{route('department.store')}}">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter dept Name" aria-describedby="helpId">
+                    <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}" placeholder="Enter dept Name" aria-describedby="helpId">
+                    @error("name")
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -26,7 +33,20 @@
                         <option value="{{$id}}">{{$name}}</option>
                         @endforeach
                     </select>
+                    @error("department_id")
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
+
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" name="age" id="age" class="form-control" value="{{old('age')}}" placeholder="Enter dept Name" aria-describedby="helpId">
+                    @error("age")
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+
                 <input type="submit" class="btn btn-sm btn-primary m-1" value="Save">
             </form>
         </div>

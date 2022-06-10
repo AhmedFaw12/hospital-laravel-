@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\AhmedRule;
 use App\Models\Department;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
@@ -16,7 +17,7 @@ class DepartmentController extends Controller
     public function index()
     {
         // return view("depts.index", ["depts" => Department::all()]);
-        return view("depts.index", ["depts" => Department::paginate(4)]);
+        return view("depts.index", ["depts" => Department::paginate(10)]);
     }
 
     /**
@@ -38,6 +39,15 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         //validate request coming from form
+        $request->validate([
+            "name"=>['required', new AhmedRule()],
+            "department_id"=>"nullable|integer",
+            "age" =>["required", function($attribute, $value, $fail){
+                if($value < 10 || $value > 60){
+                    $fail("$value is Invalid age");
+                }
+            }]
+        ]);
 
         //create model object
         // dump($request->all());
@@ -58,7 +68,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        dump($department);
+        return $department;
     }
 
     /**
