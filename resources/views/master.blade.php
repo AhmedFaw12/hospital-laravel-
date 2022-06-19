@@ -56,7 +56,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" href="{{route('department.index')}}">
               <span data-feather="home"></span>
               {{-- first way to use localization using trans() func--}}
               {{trans("messages.Dashboard")}}
@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('department.index')}}">
               <span data-feather="shopping-cart"></span>
               {{__("messages.Departments")}}
             </a>

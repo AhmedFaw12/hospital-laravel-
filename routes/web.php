@@ -1,11 +1,6 @@
 <?php
 
-
-use App\Models\Department;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Config;
-use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,45 +13,29 @@ use App\Http\Controllers\DepartmentController;
 |
 */
 
-//display master view
-// Route::get('/', function () {
-//     return view('master');
-// });
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get("/depts", [DepartmentController::class,"index"]);
-// Route::get("/depts/store", [DepartmentController::class,"store"]);
-// Route::get("/depts/{department}", [DepartmentController::class,"show"]);
-// Route::get("/depts/{department}/delete", [DepartmentController::class,"destroy"]);
 
-//example for route::resource
-Route::resource('department', DepartmentController::class);
+//made by breeze
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-//example for pagination
-Route::view("/cats", "categories.index", ['depts'=>Department::paginate(10)]);
+require __DIR__.'/auth.php';
 
-//example for localization (switching language)
-Route::get('/test', function(){
-    //1st way to change locale
-    Config::set("app.locale", 'en');
 
-    //2nd way to change locale
-    // App::setLocale("en");
+//made by us
+Route::prefix("/users")->middleware("auth")->group(function(){
+    Route::get("/", function(){
+        return view("users.list");
+    })->name("users.list");
 
-    echo trans("messages.Departments");
-    // return view("master");
+    //other routes
 });
 
-//example2 for localization (switching language)
-Route::get('/change/{lang}', function($lang){
-    if($lang == "ar"){
-        session()->put("lang", "ar");
-    }else{
-        session()->put("lang", "en");
-    }
-    return redirect()->back();
-});
+
+
+
 

@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'mobile', //added mobile to be filled in mobile column
         'password',
     ];
 

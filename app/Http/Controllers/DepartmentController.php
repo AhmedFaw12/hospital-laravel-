@@ -40,7 +40,8 @@ class DepartmentController extends Controller
     {
         //validate request coming from form
         $request->validate([
-            "name"=>['required', new AhmedRule()],
+            // "name"=>['required', new AhmedRule()],
+            "name"=>'required',
             "department_id"=>"nullable|integer",
             "age" =>["required", function($attribute, $value, $fail){
                 if($value < 10 || $value > 60){
